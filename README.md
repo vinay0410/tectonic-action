@@ -1,21 +1,30 @@
-# first-action
+# Latex Action 
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action compiles latex files using [Tectonic](https://tectonic-typesetting.github.io/en-US/), which automatically downloads necessary dependencies, and compiles to pdf.
 
 ## Inputs
 
-### `who-to-greet`
+### `tex-path`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** Path of tex, xtx file to compile.
 
 ## Outputs
-
-### `time`
-
-The time we greeted you.
+Pushes a Compiled PDF file parallel to the tex, xtx file.
 
 ## Example usage
+```
+on: [push]
 
-uses: actions/hello-world-docker-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'
+jobs:
+  latex-job:
+    runs-on: ubuntu-latest
+    name: A job to Compile Latex file
+    steps:
+    - uses: actions/checkout@v1
+    - name: Compilation
+      uses: vinay0410/tectonic-action@master
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tex_path: 'dir/file.tex'
+```

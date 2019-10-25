@@ -1,12 +1,15 @@
 # action.yml
-name: 'Latex Compile'
-description: 'Compile Latex Files'
+name: 'Compile LateX'
+description: 'Compile Latex files easily !'
+branding:
+  icon: file-text
+  color: blue
 inputs:
-  tex-path:  # id of input
+  tex_path:  # id of input
     description: 'Path of Tex File'
     required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.tex-path }}
+    - ${{ inputs.tex_path }}
