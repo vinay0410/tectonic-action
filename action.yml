@@ -2,11 +2,11 @@
 name: 'Latex Compile'
 description: 'Compile Latex Files'
 inputs:
-  tex-path:  # id of input
+  tex_path:  # id of input
     description: 'Path of Tex File'
     required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.tex-path }}
+    - ${{ inputs.tex_path }}
