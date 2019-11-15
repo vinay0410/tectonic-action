@@ -8,7 +8,7 @@ tectonic $1
 OUTPUT_PDF="${1%.*}.pdf"
 
 STATUSCODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" -i -X PUT -H "Authorization: token $GITHUB_TOKEN" -d '{
-  "message": "update $OUTPUT_PDF",
+  "message": "'"update $OUTPUT_PDF"'",
   "committer": {
     "name": "Tectonic Action",
     "email": "tectonic-action@github.com"
