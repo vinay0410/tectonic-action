@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-set -ex
+set -e
 
 echo "Compiling $1"
 tectonic $1
