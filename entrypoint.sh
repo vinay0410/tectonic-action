@@ -39,7 +39,7 @@ echo '{
     "email": "tectonic-action@github.com"
   },
   "content": "'"$(base64 -w 0 $OUTPUT_PDF)"'",
-  "sha": '$SHA'
+  "sha": "'$SHA'"
 }' > payload.json
 
 STATUSCODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" \
