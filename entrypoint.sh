@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
 set -e
-
 echo "Compiling $1"
 tectonic $1
+
+PUSH_OUTPUT=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+
+if [[ $PUSH_OUTPUT != "yes" ]]; then # Don't push PDF
+  exit 0;
+fi
 
 OUTPUT_PDF="${1%.*}.pdf"
 

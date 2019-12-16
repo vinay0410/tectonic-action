@@ -8,8 +8,13 @@ inputs:
   tex_path:  # id of input
     description: 'Path of Tex File'
     required: true
+  push:
+    description: 'String stating whether to push output PDF, PDF will only be pushed in case of "yes"'
+    default: 'no'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.tex_path }}
+    - ${{ inputs.push }}
