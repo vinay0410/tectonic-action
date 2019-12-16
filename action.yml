@@ -10,7 +10,7 @@ inputs:
     required: true
   push:
     description: 'String stating whether to push output PDF, PDF will only be pushed in case of "yes"'
-    default: 'yes'
+    default: 'no'
     required: false
 runs:
   using: 'docker'
