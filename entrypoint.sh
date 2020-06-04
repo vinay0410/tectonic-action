@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 set -e
-echo "Compiling $1"
-tectonic $1
+echo "Compiling $2"
+tectonic $1 $2
 
-PUSH_OUTPUT=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+PUSH_OUTPUT=$(echo "$3" | tr '[:upper:]' '[:lower:]')
 
 if [[ $PUSH_OUTPUT != "yes" ]]; then # Don't push PDF
   exit 0;
 fi
 
-OUTPUT_PDF="${1%.*}.pdf"
+OUTPUT_PDF="${2%.*}.pdf"
 
-if [[ ${OUTPUT_PDF:0:1} == "/" ]]; then
+if [[ ${OUTPUT_PDF:0:1} == "/" ]]; then # Strip out path signifier
   OUTPUT_PDF=${OUTPUT_PDF:1}
 fi
 
