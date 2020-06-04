@@ -12,7 +12,7 @@ fi
 
 OUTPUT_PDF="${2%.*}.pdf"
 
-if [[ ${OUTPUT_PDF:0:1} == "/" ]]; then # Strip out path signifier
+if [[ ${OUTPUT_PDF:0:1} ~= "[\\/]" ]]; then # Strip path signifier
   OUTPUT_PDF=${OUTPUT_PDF:1}
 fi
 
