@@ -48,6 +48,7 @@ Pushes a Compiled PDF file parallel to the tex, xtx file, if push is passed as '
 ## Example usage
 
 ### Pushes Compiled PDF
+
 ```
 on: [push]
 
@@ -67,6 +68,7 @@ jobs:
 ```
 
 ### Doesn't Push Compiled PDF
+
 ```
 on: [push]
 
@@ -82,4 +84,27 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tex_path: 'dir/file.tex'
+```
+
+### CLI Switches
+
+Suppose we want three reruns after the first and to print the TeX engine's chatter during processing. We adapt `Pushes Compiled PDF` example to our purpose as follows:
+
+```
+on: [push]
+
+jobs:
+  latex-job:
+    runs-on: ubuntu-latest
+    name: A job to Compile Latex file
+    steps:
+    - uses: actions/checkout@v1
+    - name: Compilation
+      uses: vinay0410/tectonic-action@master
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tex_path: 'dir/file.tex'
+        push: 'yes'
+        swtiches: --reruns 3 --print
 ```
