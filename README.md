@@ -1,6 +1,6 @@
 # Latex Action 
 
-This action compiles latex files using [Tectonic](https://tectonic-typesetting.github.io/en-US/), which automatically downloads necessary dependencies, and compiles to pdf.
+This action compiles latex/xelatex files using [Tectonic](https://tectonic-typesetting.github.io/en-US/), which automatically downloads necessary dependencies, and compiles to pdf.
 
 ## Inputs
 
