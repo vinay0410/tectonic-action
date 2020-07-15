@@ -8,6 +8,9 @@ inputs:
   tex_path:  # id of input
     description: 'Path of Tex File'
     required: true
+  switches: # Tectonic CLI switches (optional)
+    description: 'Command line flags and options passed along to Tectonic executable'
+    required: false
   push:
     description: 'String stating whether to push output PDF, PDF will only be pushed in case of "yes"'
     default: 'no'
@@ -16,5 +19,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.switches }}
     - ${{ inputs.tex_path }}
     - ${{ inputs.push }}
