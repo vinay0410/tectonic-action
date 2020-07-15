@@ -1,6 +1,6 @@
 # action.yml
 name: 'Compile LateX'
-description: 'Compile Latex files easily !'
+description: 'Compile Latex/XeLatex files easily !'
 branding:
   icon: file-text
   color: blue
