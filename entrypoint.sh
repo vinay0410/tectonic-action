@@ -18,6 +18,16 @@ fi
 
 FILE_NAME=$(basename $OUTPUT_PDF)
 DIR=$(dirname $OUTPUT_PDF)
+OUTPUT_PATH=$OUTPUT_PDF
+
+PUSH_PATH=$3
+if [[ ! -z $PUSH_PATH ]]; then
+  if [[ ${PUSH_PATH:0:1} == "/" ]]; then
+    PUSH_PATH=${PUSH_PATH:1}
+  fi
+  DIR=$PUSH_PATH
+  OUTPUT_PATH="$DIR/$FILE_NAME"
+fi
 
 STATUSCODE=$(curl --silent --output resp.json --write-out "%{http_code}" -X GET -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${GITHUB_REPOSITORY}/contents/$DIR)
 
@@ -34,11 +44,11 @@ do
     if [ "$NAME" = "$FILE_NAME" ]; then
         SHA=$(echo $i | jq -r .sha)
         break
-    fi    
+    fi
 done
 
 echo '{
-  "message": "'"update $OUTPUT_PDF"'",
+  "message": "'"update $OUTPUT_PATH"'",
   "committer": {
     "name": "Tectonic Action",
     "email": "tectonic-action@github.com"
@@ -49,7 +59,7 @@ echo '{
 
 STATUSCODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" \
             -i -X PUT -H "Authorization: token $GITHUB_TOKEN" -d @payload.json \
-            https://api.github.com/repos/${GITHUB_REPOSITORY}/contents/${OUTPUT_PDF})
+            https://api.github.com/repos/${GITHUB_REPOSITORY}/contents/${OUTPUT_PATH})
 
 if [ $((STATUSCODE/100)) -ne 2 ]; then
   echo "Github's API returned $STATUSCODE"

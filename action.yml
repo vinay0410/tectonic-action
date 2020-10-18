@@ -12,9 +12,13 @@ inputs:
     description: 'String stating whether to push output PDF, PDF will only be pushed in case of "yes"'
     default: 'no'
     required: false
+  push_path:
+    description: 'Path of output PDF, PDF will be pushed to same directory as Tex File if unused'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.tex_path }}
     - ${{ inputs.push }}
+    - ${{ inputs.push_path }}
